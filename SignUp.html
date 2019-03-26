@@ -1,0 +1,135 @@
+<html>
+<head>
+	<title>Sign-up</title>
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="css/SUstyle.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+</head>
+<body>
+
+<div class="container">
+	<div class="row" id="top">
+		<div class="col-sm-5 main-section">
+			<div class="modal-content edit">
+				
+				<form class="form-group1">
+				<h1><b><center>Sign-up Here</center></b></h1></br>
+					<div class="row">
+						<div class="col-md-6">
+							<label class="lb">Last Name:</label>
+							<input type="text" name="fname" class="form-control" placeholder="Enter Last Name">
+						</div>
+						
+						<div class="col-md-6">
+							<label class="lb">First Name:</label>
+							<input type="text" name="lname" class="form-control" placeholder="Enter First Name">
+						</div>
+					</div>
+					
+					<label class="lb">Email:</label>
+					<input type="email" name="email" class="form-control" placeholder="Enter Email">
+					
+					<div class="row">
+						<div class="col-md-6">
+							<label class="lb">Password:</label>
+							<input type="password" id="password" name="password" class="form-control" placeholder="Enter Password">
+						</div>
+
+						<div class="col-md-6">
+							<label class="lb">Password Strength:</label>
+							<progress max = "100" value="0" id="strength"></progress>
+						</div>
+					</div>
+					
+					<div class="row">
+						 <div class="col-md-12">
+								<select class="form-control">
+									<option>Choose Gender</option>
+									<option>Male</option>
+									<option>Female</option>
+								</select>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group"> 
+								<label class="lb" id="date">Birthdate:</label>
+								<input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
+							</div>
+						</div>
+					</div>
+					<button class="btn btn-lock"><i class="fas fa-sign-up-alt"></i>Submit</button>
+					</br></br>
+					<div class="col-sm-12 forgot">
+						<a href="#">Terms and Conditions</a><br>
+						<a href="LogIn.html">Already have an account?</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+	<script type="text/javascript">
+		const pass = document.getElementById("password");
+		pass.addEventListener('keyup',function() {
+			checkPassword(pass.value);
+		})
+		function checkPassword(password) {
+			const strengthBar = document.getElementById("strength");
+			let strength = 0;
+			if(password.match(/[A-Z]+/)){
+				strength += 1;
+			}
+			if(password.match(/[a-z]+/)){
+				strength += 1;
+			}
+			if (password.match(/[0-9]+/)){
+				strength += 1;
+			}
+			if (password.match(/[!@#$%^&*()]+/)){
+				strength += 1;
+			}
+			if(password.length > 5){
+				strength += 1;
+			}
+			switch(strength){
+				case 0:
+					strengthBar.value=0;
+					break
+				case 1:
+					strengthBar.value=20;
+					break
+				case 2:
+					strengthBar.value=40;
+					break
+				case 3:
+					strengthBar.value=60;
+					break
+				case 4:
+					strengthBar.value=80;
+					break
+				case 5:
+					strengthBar.value=100;
+					break
+			}
+		}
+		
+		 $(document).ready(function(){
+		  var date_input=$('input[name="date"]'); //our date input has the name "date"
+		  var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+		  var options={
+			format: 'mm/dd/yyyy',
+			container: container,
+			todayHighlight: true,
+			autoclose: true,
+		  };
+		  date_input.datepicker(options);
+		})
+	</script>
+</html>
